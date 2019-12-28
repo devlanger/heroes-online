@@ -73,7 +73,7 @@ namespace HeroesServer
                                 {
                                     Character = new Hero()
                                     {
-                                        Position = new System.Numerics.Vector3(127, 14, 100)
+                                        Position = new System.Numerics.Vector3(1786, 3, 1769)
                                     },
                                     ZoneId = 0
                                 });
