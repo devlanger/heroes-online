@@ -1,12 +1,14 @@
 ﻿using ENet;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace ServerUtilities
 {
     public class Client
     {
+        public CharacterSession Session { get; set; }
         public Peer Peer { get; set; }
 
         public void SendData(PacketBase packet)
@@ -19,5 +21,11 @@ namespace ServerUtilities
 
             Peer.Send(0, ref p);
         }
+    }
+
+    public class CharacterSession
+    {
+        public int id;
+        public string hash;
     }
 }

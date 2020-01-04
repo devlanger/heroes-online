@@ -17,7 +17,8 @@ namespace LoginServer
         {
             packets = new Dictionary<byte, Type>()
             {
-                { 1, typeof(LoginServer.ReceivedPackets.LoginPacket) }
+                { 1, typeof(LoginServer.ReceivedPackets.LoginPacket) },
+                { 2, typeof(LoginServer.ReceivedPackets.EnterGamePacket) }
             };
 
             Console.WriteLine("Packets manager initialized.");

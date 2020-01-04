@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServerUtilities;
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
@@ -9,7 +10,6 @@ namespace HeroesServer
     {
         public int Id { get; set; }
         public short BaseId { get; set; }
-        public int ExpReward { get; set; }
         private Dictionary<StatType, int> stats = new Dictionary<StatType, int>();
 
         public bool IsDead { get; set; }
@@ -29,8 +29,18 @@ namespace HeroesServer
                 stats.Add((StatType)item, 0);
             }
 
-            stats[StatType.HEALTH] = 20;
+            stats[StatType.HEALTH] = 100;
             stats[StatType.LEVEL] = 1;
+        }
+
+
+        public virtual void Hit(CombatManager.HitData data)
+        {
+        }
+
+        public virtual void Die(CharacterInfo character, CombatManager.HitData data)
+        {
+
         }
 
         public int GetStatValue(StatType stat)
@@ -41,6 +51,11 @@ namespace HeroesServer
             }
 
             return stats[stat];
+        }
+
+        public virtual void Update(CharacterInfo info)
+        {
+
         }
 
         public void SetStat(StatType stat, int value)
@@ -74,19 +89,18 @@ namespace HeroesServer
                     {
                         newValue = 0;
                         ChangeStatValue(StatType.LEVEL, 1);
+                        ChangeStatValue(StatType.SKILL_POINTS, 5);
                     }
                     break;
             }
         }
 
-        public void SetData(CharactersManager.SpawnData data)
+        public virtual void SetData(CharactersManager.SpawnData data)
         {
             Name = data.name;
 
             SetStat(StatType.HEALTH, data.health);
             SetStat(StatType.LEVEL, data.lvl);
-
-            ExpReward = data.expReward;
         }
     }
 }

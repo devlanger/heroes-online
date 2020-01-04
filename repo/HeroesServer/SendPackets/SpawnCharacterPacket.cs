@@ -7,8 +7,6 @@ namespace HeroesServer.SendPackets
 {
     public class SpawnCharacterPacket : PacketBase
     {
-        private bool local = false;
-
         public SpawnCharacterPacket(bool local, CharacterInfo character) : base()
         {
             writer.Write((byte)2);
@@ -24,7 +22,10 @@ namespace HeroesServer.SendPackets
             writer.Write(character.Character.Position.Y);
             writer.Write(character.Character.Position.Z);
 
-            this.local = local;
+            if (local)
+            {
+                writer.Write((ushort)character.Character.GetStatValue(StatType.SKILL_POINTS));
+            }
         }
 
         public override void Read(Client client)

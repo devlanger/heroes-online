@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ServerUtilities;
 
 namespace HeroesServer
 {
@@ -26,8 +27,12 @@ namespace HeroesServer
                         item.Value.Client.SendData(new StatSyncPacket(Character.Id, stat, newValue));
                     }
                     break;
+                case StatType.SKILL_POINTS:
                 case StatType.EXPERIENCE:
-                    Client.SendData(new StatSyncPacket(Character.Id, stat, newValue));
+                    if (Client != null)
+                    {
+                        Client.SendData(new StatSyncPacket(Character.Id, stat, newValue));
+                    }
                     break;
             }
         }
@@ -38,6 +43,8 @@ namespace HeroesServer
             {
                 UpdateClient();
             }
+
+            Character.Update(this);
         }
 
         private void UpdateClient()

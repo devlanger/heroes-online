@@ -31,7 +31,12 @@ namespace LoginServer.ReceivedPackets
                     string sessionHash = Base64Encode();
 
                     DatabaseManager.InsertQuery(string.Format("UPDATE characters SET session_hash='{0}' WHERE id={1}", sessionHash, accountId));
-                    client.SendData(new JoinGamePacket(characterId, sessionHash));
+                    client.Session = new CharacterSession()
+                    {
+                        id = characterId,
+                        hash = sessionHash,
+                    };
+                    client.SendData(new LoginOkPacket());
                     Console.WriteLine("Log in successfully.");
                 }
                 else

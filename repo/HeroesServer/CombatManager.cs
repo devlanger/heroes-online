@@ -22,6 +22,7 @@ namespace ServerUtilities
                     continue;
                 }
 
+                item.Character.Hit(data);
                 item.Character.ChangeStatValue(StatType.HEALTH, -10);
 
                 if(item.Character.GetStatValue(StatType.HEALTH) <= 0)
@@ -31,8 +32,7 @@ namespace ServerUtilities
 
                 if(item.Character.IsDead)
                 {
-                    data.attacker.Character.ChangeStatValue(StatType.EXPERIENCE, item.Character.ExpReward);
-                    CharactersManager.Instance.RemoveCharacter(item);
+                    item.Character.Die(item, data);
                 }
             }
         }

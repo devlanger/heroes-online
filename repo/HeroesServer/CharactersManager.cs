@@ -77,7 +77,7 @@ namespace HeroesServer
                 SpawnData data = mobsProto[baseId];
                 CharacterInfo info = new CharacterInfo()
                 {
-                    Character = new Character()
+                    Character = new Monster()
                     {
                         Id = lastId++,
                         BaseId = (short)baseId,

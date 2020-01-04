@@ -10,6 +10,14 @@ namespace HeroesServer
 {
     class Server
     {
+        public static float Time
+        {
+            get
+            {
+                return (float)Environment.TickCount / 1000f;
+            }
+        }
+
         public Server()
         {
             ENet.Library.Initialize();
@@ -25,7 +33,10 @@ namespace HeroesServer
 
                     foreach (var player in characters)
                     {
-                        charactersForUpdate.Add(player.Character);
+                        if (player.Client != null)
+                        {
+                            charactersForUpdate.Add(player.Character);
+                        }
                     }
 
                     if (charactersForUpdate.Count != 0)

@@ -25,6 +25,7 @@ namespace HeroesServer.ReceivedPackets
                 double z = (double)table.Rows[0]["pos_z"];
                 byte lvl = (byte)table.Rows[0]["level"];
                 int exp = (int)table.Rows[0]["experience"];
+                ushort skillPoints = (ushort)table.Rows[0]["skill_points"];
 
                 Console.WriteLine(name);
                 CharacterInfo info = ((GameClient)client).CharacterInfo;
@@ -33,6 +34,7 @@ namespace HeroesServer.ReceivedPackets
                 info.Character.Position = new System.Numerics.Vector3((float)x, (float)y, (float)z);
                 info.Character.SetStat(StatType.LEVEL, lvl);
                 info.Character.SetStat(StatType.EXPERIENCE, exp);
+                info.Character.SetStat(StatType.SKILL_POINTS, skillPoints);
 
                 client.SendData(new HeroesServer.SendPackets.JoinGamePacket());
                 client.SendData(new HeroesServer.SendPackets.SpawnCharacterPacket(true, info));

@@ -5,14 +5,11 @@ using System.Text;
 
 namespace HeroesServer.SendPackets
 {
-    public class JoinGamePacket : PacketBase
+    public class LoginOkPacket : PacketBase
     {
-        public JoinGamePacket(int id, string sessionHash) : base()
+        public LoginOkPacket() : base()
         {
-            writer.Write((byte)2);
-
-            writer.Write(id);
-            writer.Write(sessionHash);
+            writer.Write((byte)1);
         }
 
         public override void Read(Client client)
