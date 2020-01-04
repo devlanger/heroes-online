@@ -22,6 +22,7 @@ namespace HeroesServer
                 { 1, typeof(HeroesServer.ReceivedPackets.JoinGamePacket) },
                 { 2, typeof(HeroesServer.ReceivedPackets.PlayerStatePacket) },
                 { 3, typeof(HeroesServer.ReceivedPackets.HitPacket) },
+                { 4, typeof(HeroesServer.ReceivedPackets.DashPacket) },
             };
 
             Console.WriteLine("Packets manager initialized.");

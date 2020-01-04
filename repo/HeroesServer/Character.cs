@@ -92,6 +92,12 @@ namespace HeroesServer
                         ChangeStatValue(StatType.SKILL_POINTS, 5);
                     }
                     break;
+                case StatType.STAMINA:
+                    if (newValue >= 100)
+                    {
+                        newValue = 100;
+                    }
+                    break;
             }
         }
 
@@ -99,6 +105,7 @@ namespace HeroesServer
         {
             Name = data.name;
 
+            SetStat(StatType.MAX_HEALTH, data.health);
             SetStat(StatType.HEALTH, data.health);
             SetStat(StatType.LEVEL, data.lvl);
         }

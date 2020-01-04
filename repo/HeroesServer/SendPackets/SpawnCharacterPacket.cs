@@ -17,6 +17,8 @@ namespace HeroesServer.SendPackets
 
             writer.Write(character.Character.Name);
             writer.Write((byte)character.Character.GetStatValue(StatType.LEVEL));
+            writer.Write(character.Character.GetStatValue(StatType.HEALTH));
+            writer.Write(character.Character.GetStatValue(StatType.MAX_HEALTH));
 
             writer.Write(character.Character.Position.X);
             writer.Write(character.Character.Position.Y);

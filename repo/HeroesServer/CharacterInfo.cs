@@ -27,6 +27,7 @@ namespace HeroesServer
                         item.Value.Client.SendData(new StatSyncPacket(Character.Id, stat, newValue));
                     }
                     break;
+                case StatType.STAMINA:
                 case StatType.SKILL_POINTS:
                 case StatType.EXPERIENCE:
                     if (Client != null)
